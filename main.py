@@ -1,21 +1,25 @@
+import math
+
 import dotenv
 
 from HelloAgentsLLM import HelloAgentsLLM
 from PlanAndSolveAgent import PlanAndSolveAgent
 from ReActAgent import ReactAgent
+from ReflectionAgent import ReflectionAgent
 from ToolExecutor import ToolExecutor
 from Tools import search, time_now
 
 dotenv.load_dotenv()
 
-# 按装订区域中的绿色按钮以运行脚本。
+
 if __name__ == '__main__':
 
-    agent = PlanAndSolveAgent(
+    # print(find_primes(int(math.pow(10,7))))
+
+
+    agent = ReflectionAgent(
         llm_client=HelloAgentsLLM(),
+        max_iterations=3
     )
 
-    agent.run("""
-    
-已知数列{an}，a≠0，若a1=3，2an+1-an=0， 则a6=
-    """)
+    agent.run("编写一个Python函数，找出1到n之间所有的素数 (prime numbers)。")
