@@ -17,9 +17,11 @@ if __name__ == '__main__':
     # print(find_primes(int(math.pow(10,7))))
 
 
-    agent = ReflectionAgent(
-        llm_client=HelloAgentsLLM(),
-        max_iterations=3
-    )
+    agent = HelloAgentsLLM()
+    response = agent.think([
+        {"role": "system", "content": "You are a helpful assistant that writes Python code."},
+        {"role": "user", "content": "写一个快速排序算法"}
+    ])
 
-    agent.run("编写一个Python函数，找出1到n之间所有的素数 (prime numbers)。")
+    print("LLM响应内容:")
+    print(response)
